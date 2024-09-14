@@ -52,6 +52,12 @@ class Solution {
     }
 }
 ```
+
+#### Explanation:
+- We iterate over every possible pair of indices i and j, checking if their sum equals the target.
+- If a valid pair is found, the indices of these elements are returned.
+- If no valid pair is found, return empty array.
+
 #### Time Complexity:
 O(n²) because for every element, we check all the elements after it.
 
@@ -99,6 +105,12 @@ class Solution {
 }
 
 ```
+
+#### Explanation:
+- As we iterate through the array, for each element nums[i], we calculate the difference target - nums[i] (the number needed to complete the pair).
+- If the difference is already in the hash map, we know we’ve found the two numbers that add up to the target.
+- If the difference is not in the hash map, we store the current element and its index for future reference.
+
 #### Time Complexity:
 O(n) because we pass through the array once, and looking up elements in a hash map is O(1) on average.
 
@@ -174,6 +186,11 @@ class Solution {
     }
 }
 ```
+
+#### Explanation:
+- Sort Each String: For each string in the input array, we sort its characters. For example, "eat" becomes "aet", and "tea" also becomes "aet".
+- Use HashMap: We use a hash map to group strings that have the same sorted characters (anagrams). The sorted string is the key, and the value is a list of original strings that are anagrams.
+- Return Result: At the end, we return the values of the hash map, which represent the grouped anagrams.
 
 #### Time Complexity:
 O(n * klogk) where n is the number of strings and k is the maximum length of a string. Sorting each string takes O(klogk), and we do this for all n strings.
@@ -366,7 +383,7 @@ O(n), since we are storing elements in a set.
 # 5. Intersection of Two Arrays II
 
 ### Sorting Both Arrays(Brute force)
-Another approach is to sort both arrays and use two pointers to find the common elements. This method does not require extra space but has a higher time complexity due to sorting.
+Approach is to sort both arrays and use two pointers to find the common elements. This method does not require extra space but has a higher time complexity due to sorting.
 
 #### Steps:
 1. Sort both nums1 and nums2.
