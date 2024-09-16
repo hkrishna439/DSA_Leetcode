@@ -310,6 +310,35 @@ O(n), where n is the number of elements in the array. This is because each eleme
 O(n), since we use a hash set to store all the elements.
 
 # 4. Contains Duplicate
+Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+
+
+
+#### Example 1:
+
+Input: nums = [1,2,3,1]
+
+Output: true
+
+#### Explanation:
+
+The element 1 occurs at the indices 0 and 3.
+
+#### Example 2:
+
+Input: nums = [1,2,3,4]
+
+Output: false
+
+#### Explanation:
+
+All elements are distinct.
+
+#### Example 3:
+
+Input: nums = [1,1,1,3,3,4,3,2,4,2]
+
+Output: true
 
 ### Sorting the Array(Brute force)
 Another approach is to sort the array and check for consecutive duplicate elements. If two consecutive elements are the same, then the array contains duplicates.
@@ -381,6 +410,23 @@ O(n), where n is the number of elements in the array.
 O(n), since we are storing elements in a set.
 
 # 5. Intersection of Two Arrays II
+Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the result must appear as many times as it shows in both arrays and you may return the result in any order.
+
+
+
+#### Example 1:
+
+Input: nums1 = [1,2,2,1], nums2 = [2,2]
+
+Output: [2,2]
+#### Example 2:
+
+Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+
+Output: [4,9]
+
+##### Explanation: 
+[9,4] is also accepted.
 
 ### Sorting Both Arrays(Brute force)
 Approach is to sort both arrays and use two pointers to find the common elements. This method does not require extra space but has a higher time complexity due to sorting.
@@ -640,28 +686,33 @@ The optimized approach uses the Floyd's Cycle Detection Algorithm (Tortoise and 
 - If there is a cycle, the two pointers will eventually meet.
 ```java
 class Solution {
-    public boolean isHappy(int n) {
-        Set<Integer> set = new HashSet<>();
+   public boolean isHappy(int n) {
 
-        while(n!=1 && !set.contains(n)){
-            set.add(n);
-            n = findSquare(n);
-        }
+      int slow = n;
+      int fast = n;
 
-        return n==1;
-    }
+      do {
+         slow = findSquare(slow);
+         fast = findSquare(findSquare(fast));
+      } while(slow != fast);
 
-    private int findSquare(int n){
+      if(slow == 1){
+         return true;
+      }
 
-        int square =0;
-        while(n>0){
-            int rem = n%10;
-            square += rem*rem;
-            n /= 10;
-        }
+      return false;
+   }
 
-        return square;
-    }
+   private int findSquare(int number){
+      int ans = 0;
+      while(number > 0){
+         int rem = number%10;
+         ans += rem * rem;
+         number /= 10;
+      }
+
+      return ans;
+   }
 }
 ```
 
